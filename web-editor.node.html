@@ -1,0 +1,7 @@
+<div ui-tree-handle>
+	{{node.type=='tag'?node.name:node.type=='text'?node.data:0}}
+	<li ng-repeat="(name,value) in node.attributes">{{name}}={{value}}</li>
+</div>
+<ol ui-tree-nodes ng-model="node.children">
+	<li ui-tree-node ng-repeat="node in node.children" ng-include="'web-editor.node.html'"></li>
+</ol>

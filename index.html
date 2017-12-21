@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src=/bower_components/angular/angular.js></script>
+	<script src=/bower_components/angular-ui-tree/dist/angular-ui-tree.js></script>
+	<link rel=stylesheet href=/bower_components/angular-ui-tree/dist/angular-ui-tree.css>
+	<link rel=stylesheet href=web-editor.css>
+	<script src=/bower_components/node-htmlparser/lib/htmlparser.js></script>
+</head>
+<body ng-app=. ng-controller=.>
+	<web-editor ng-model=html></web-editor>
+	<script>
+		var builder = new Tautologistics.NodeHtmlParser.HtmlBuilder(angular.noop);
+		var parser = new Tautologistics.NodeHtmlParser.Parser(builder);
+		parser.parseComplete("<div a=0 b=1>abc<span>def</span></div>");
+		angular.module('.', ['ui.tree'])
+			.controller('.', function ($scope) {
+				$scope.html = builder.dom;
+			})
+			.directive('webEditor', function () {
+				return {
+					templateUrl: "web-editor.html",
+					scope: {
+						ngModel: '='
+					}
+				}
+			});
+	</script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+.angular-ui-tree-placeholder {
+	min-height: 0;
+	margin: 0;
+	background: lightgray;
+}
+
+.angular-ui-tree-handle > li {
+	display: inline;
+	margin-left: .2em;
+	margin-right: .2em;
+}
