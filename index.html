@@ -22,6 +22,9 @@
 					templateUrl: "web-editor.html",
 					scope: {
 						ngModel: '='
+					},
+					link: function (scope) {
+						scope.$webEditor = scope;
 					}
 				}
 			});

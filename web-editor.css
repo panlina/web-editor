@@ -9,3 +9,7 @@
 	margin-left: .2em;
 	margin-right: .2em;
 }
+
+.angular-ui-tree-node.selected > .web-editor-element-tag {
+	background-color: lightgray;
+}
