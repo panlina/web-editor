@@ -6,6 +6,7 @@
 	<link rel=stylesheet href=/bower_components/angular-ui-tree/dist/angular-ui-tree.css>
 	<link rel=stylesheet href=web-editor.css>
 	<script src=/bower_components/node-htmlparser/lib/htmlparser.js></script>
+	<script src=/web-editor.js></script>
 </head>
 <body ng-app=. ng-controller=.>
 	<web-editor ng-model=html></web-editor>
@@ -13,20 +14,9 @@
 		var builder = new Tautologistics.NodeHtmlParser.HtmlBuilder(angular.noop);
 		var parser = new Tautologistics.NodeHtmlParser.Parser(builder);
 		parser.parseComplete("<div a=0 b=1>abc<span>def</span></div>");
-		angular.module('.', ['ui.tree'])
+		angular.module('.', ['web-editor'])
 			.controller('.', function ($scope) {
 				$scope.html = builder.dom;
-			})
-			.directive('webEditor', function () {
-				return {
-					templateUrl: "web-editor.html",
-					scope: {
-						ngModel: '='
-					},
-					link: function (scope) {
-						scope.$webEditor = scope;
-					}
-				}
 			});
 	</script>
 </body>
