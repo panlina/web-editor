@@ -13,10 +13,12 @@
 	<script>
 		var builder = new Tautologistics.NodeHtmlParser.HtmlBuilder(angular.noop);
 		var parser = new Tautologistics.NodeHtmlParser.Parser(builder);
-		parser.parseComplete("<div a=0 b=1>abc<span>def</span></div>");
 		angular.module('.', ['web-editor'])
-			.controller('.', function ($scope) {
-				$scope.html = builder.dom;
+			.controller('.', function ($scope, $http) {
+				$http.get("html.html").then(function (response) {
+					parser.parseComplete(response.data);
+					$scope.html = builder.dom;
+				});
 			});
 	</script>
 </body>
