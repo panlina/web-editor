@@ -1,7 +1,7 @@
 <div class=web-editor-element-tag ng-click=$webEditor.selection=$modelValue;>
-	{{node.type=='tag'?node.name:node.type=='text'?node.data:0}}
-	<li ng-repeat="(name,value) in node.attributes">{{name}}={{value}}</li>
+	{{node.type=='tag'?node.name:node.type=='text'?node.value:0}}
+	<li ng-repeat="a in node.attribute">{{a.name}}={{a.value}}</li>
 </div>
-<ol ui-tree-nodes ng-model="node.children">
-	<li ui-tree-node ng-class={selected:selection==$modelValue} ng-repeat="node in node.children" ng-include="'web-editor.node.html'"></li>
+<ol ui-tree-nodes ng-model="node.child">
+	<li ui-tree-node ng-class={selected:selection==$modelValue} ng-repeat="node in node.child" ng-include="'web-editor.node.html'"></li>
 </ol>

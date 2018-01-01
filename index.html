@@ -5,19 +5,20 @@
 	<script src=/bower_components/angular-ui-tree/dist/angular-ui-tree.js></script>
 	<link rel=stylesheet href=/bower_components/angular-ui-tree/dist/angular-ui-tree.css>
 	<link rel=stylesheet href=web-editor.css>
-	<script src=/bower_components/node-htmlparser/lib/htmlparser.js></script>
+	<script src=/node_modules/parse5/parse5.browser.js></script>
 	<script src=/web-editor.js></script>
+	<script src=/Adapter.js></script>
 </head>
 <body ng-app=. ng-controller=.>
 	<web-editor ng-model=html></web-editor>
 	<script>
-		var builder = new Tautologistics.NodeHtmlParser.HtmlBuilder(angular.noop);
-		var parser = new Tautologistics.NodeHtmlParser.Parser(builder);
+		var parse5 = require('parse5');
+		var adapter = Adapter(parse5.treeAdapters.default);
 		angular.module('.', ['web-editor'])
 			.controller('.', function ($scope, $http) {
 				$http.get("html.html").then(function (response) {
-					parser.parseComplete(response.data);
-					$scope.html = builder.dom;
+					var dom = parse5.parse(response.data, { treeAdapter: adapter });
+					$scope.html = dom;
 				});
 			});
 	</script>

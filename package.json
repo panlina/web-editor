@@ -1,0 +1,7 @@
+{
+  "name": "web-editor",
+  "version": "0.0.0",
+  "dependencies": {
+    "parse5": "^3.0.3"
+  }
+}

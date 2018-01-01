@@ -1,7 +1,6 @@
 {
   "name": "web-editor",
   "dependencies": {
-    "node-htmlparser": "https://github.com/tautologistics/node-htmlparser.git",
     "angular-ui-tree": "^2.22.6",
     "angular": "*"
   }
