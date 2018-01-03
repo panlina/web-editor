@@ -11,7 +11,6 @@ function Adapter(_default) {
 		return document;
 	};
 	//createTextNode is not exposed thru TreeAdapter, so its callers insertText and insertTextBefore are overridden
-	//insertText, insertTextBefore, createTextNode are copied from treeAdapters.default
 	adapter.insertText = function (parentNode, text) {
 		if (parentNode.childNodes.length) {
 			var prevNode = parentNode.childNodes[parentNode.childNodes.length - 1];
@@ -40,8 +39,51 @@ function Adapter(_default) {
 			parentNode: null
 		};
 	};
+	adapter.createCommentNode = function (data) {
+		return {
+			__proto__: prototype,
+			nodeName: '#comment',
+			data: data,
+			parentNode: null
+		};
+	};
+	adapter.setDocumentType = function (document, name, publicId, systemId) {
+		var doctypeNode = null;
+
+		for (var i = 0; i < document.childNodes.length; i++) {
+			if (document.childNodes[i].nodeName === '#documentType') {
+				doctypeNode = document.childNodes[i];
+				break;
+			}
+		}
+
+		if (doctypeNode) {
+			doctypeNode.name = name;
+			doctypeNode.publicId = publicId;
+			doctypeNode.systemId = systemId;
+		}
+
+		else {
+			this.appendChild(document, {
+				__proto__: prototype,
+				nodeName: '#documentType',
+				name: name,
+				publicId: publicId,
+				systemId: systemId
+			});
+		}
+	};
+
 	var prototype = Object.create(Object.prototype, {
-		type: { get: function () { return this.tagName ? 'element' : 'text'; } },
+		type: {
+			get: function () {
+				switch (this.nodeName) {
+					case '#documentType': return 'doctype';
+					case '#comment': return 'comment';
+					default: return this.tagName ? 'element' : 'text';
+				}
+			}
+		},
 		name: { get: function () { return this.tagName; } },
 		child: { get: function () { return this.childNodes; } },
 		attribute: { get: function () { return this.attrs; } }
