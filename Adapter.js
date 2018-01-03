@@ -41,7 +41,7 @@ function Adapter(_default) {
 		};
 	};
 	var prototype = Object.create(Object.prototype, {
-		type: { get: function () { return this.tagName ? 'tag' : 'text'; } },
+		type: { get: function () { return this.tagName ? 'element' : 'text'; } },
 		name: { get: function () { return this.tagName; } },
 		child: { get: function () { return this.childNodes; } },
 		attribute: { get: function () { return this.attrs; } }

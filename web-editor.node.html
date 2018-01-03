@@ -1,5 +1,5 @@
 <div class=web-editor-element-tag ng-click=$webEditor.selection=$modelValue;>
-	{{node.type=='tag'?node.name:node.type=='text'?node.value:0}}
+	{{node.type=='element'?node.name:node.type=='text'?node.value:0}}
 	<li ng-repeat="a in node.attribute">{{a.name}}={{a.value}}</li>
 </div>
 <ol ui-tree-nodes ng-model="node.child">
