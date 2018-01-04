@@ -4,6 +4,10 @@
 	background: lightgray;
 }
 
+.angular-ui-tree-node {
+	min-height: 0;
+}
+
 .web-editor-element-tag > li {
 	display: inline;
 	margin-left: .2em;
