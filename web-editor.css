@@ -14,6 +14,7 @@
 	margin-right: .2em;
 }
 
-.angular-ui-tree-node.selected > .web-editor-element-tag {
+.angular-ui-tree-node.selected > .web-editor-element-tag,
+.angular-ui-tree-node.selected > .web-editor-text {
 	background-color: lightgray;
 }
