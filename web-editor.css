@@ -22,3 +22,7 @@
 .web-editor-element-tag > span {
 	color: blue;
 }
+
+.angular-ui-tree-node[type=comment] > * {
+	color: green;
+}
