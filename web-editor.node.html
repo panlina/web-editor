@@ -1,5 +1,5 @@
 <div ng-if-start=node.type=='element' class=web-editor-element-tag ng-click=$webEditor.selection=$modelValue;>
-	{{node.name}}
+	<span>{{node.name}}</span>
 	<li ng-repeat="a in node.attribute">{{a.name}}={{a.value}}</li>
 </div>
 <ol ng-if-end ui-tree-nodes ng-model="node.child">
@@ -7,4 +7,4 @@
 </ol>
 <pre ng-if=node.type=='text'&&node.value.trim() class=web-editor-text ng-click=$webEditor.selection=$modelValue;>{{node.value}}</pre>
 <div ng-if=node.type=='comment' class=web-editor-element-tag ng-click=$webEditor.selection=$modelValue;>{{node.data}}</div>
-<div ng-if=node.type=='doctype' class=web-editor-element-tag ng-click=$webEditor.selection=$modelValue;>doctype {{node.name}}</div>
+<div ng-if=node.type=='doctype' class=web-editor-element-tag ng-click=$webEditor.selection=$modelValue;><span>doctype</span> {{node.name}}</div>

@@ -18,3 +18,7 @@
 .angular-ui-tree-node.selected > .web-editor-text {
 	background-color: lightgray;
 }
+
+.web-editor-element-tag > span {
+	color: blue;
+}
